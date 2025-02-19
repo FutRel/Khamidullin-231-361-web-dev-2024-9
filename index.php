@@ -13,17 +13,17 @@
   </header>
 
   <?php
-  $layoutType = isset($_GET['layout']) ? $_GET['layout'] : 'A'; 
+  $layoutType = isset($_GET['layout']) ? $_GET['layout'] : 'A';
   ?>
 
   <aside class="sidebar">
     <h2>Выберите тип верстки:</h2>
     <select id="layoutType" onchange="changeLayout()">
-      <option value="A" <?php echo ($layoutType === 'A') ? 'selected' : ''; ?>>Тип верстки A</option>
-      <option value="B" <?php echo ($layoutType === 'B') ? 'selected' : ''; ?>>Тип верстки B</option>
-      <option value="C" <?php echo ($layoutType === 'C') ? 'selected' : ''; ?>>Тип верстки C</option>
-      <option value="D" <?php echo ($layoutType === 'D') ? 'selected' : ''; ?>>Тип верстки D</option>
-      <option value="E" <?php echo ($layoutType === 'E') ? 'selected' : ''; ?>>Тип верстки E</option>
+      <option value="A" <?php echo ($layoutType === 'A') ? 'selected' : ''; ?>>Текст</option>
+      <option value="B" <?php echo ($layoutType === 'B') ? 'selected' : ''; ?>>Маркированный список</option>
+      <option value="C" <?php echo ($layoutType === 'C') ? 'selected' : ''; ?>>Нумерованный список</option>
+      <option value="D" <?php echo ($layoutType === 'D') ? 'selected' : ''; ?>>Табличная верстка</option>
+      <option value="E" <?php echo ($layoutType === 'E') ? 'selected' : ''; ?>>Блочная верстка</option>
     </select>
   </aside>
 
@@ -122,7 +122,18 @@
   </main>
 
   <footer>
-    <p>Тип верстки: <?php echo htmlspecialchars($layoutType); ?></p>
+    <p>Тип верстки:
+      <?php
+      $layoutNames = [
+        'A' => 'Текст',
+        'B' => 'Маркированный список',
+        'C' => 'Нумерованный список',
+        'D' => 'Табличная верстка',
+        'E' => 'Блочная верстка'
+      ];
+      echo htmlspecialchars($layoutNames[$layoutType] ?? 'Неизвестный');
+      ?>
+    </p>
   </footer>
 
   <script>
